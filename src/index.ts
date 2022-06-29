@@ -5,9 +5,11 @@ dotenv.config();
 
 const App = Express();
 
-App.get("/", (req, res) => {
-    res.send("Hello world!");
-});
+import RoutePictures from "./routes/pictures";
+App.use("/pictures", RoutePictures);
+
+import RouteFacts from "./routes/facts";
+App.use("/facts", RouteFacts);
 
 const PORT = process.env.PORT || 8080;
 App.listen(PORT, () => {
