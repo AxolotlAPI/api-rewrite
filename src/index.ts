@@ -10,6 +10,11 @@ App.enable("trust proxy");
 
 App.use(ExpressPublicIp());
 
+App.use((req, res, next) => {
+    console.log(req.ip);
+    next();
+})
+
 import RoutePictures from "./routes/pictures";
 App.use("/pictures", RoutePictures);
 
