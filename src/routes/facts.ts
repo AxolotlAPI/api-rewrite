@@ -24,6 +24,8 @@ function GetRandomFact({ Author, Search, MinScore, MaxScore }): Object | null {
 }
 
 Router.get("/", (req, res) => {
+    console.log(req.ip);
+
     const Amount    = req.query.amount || 1; // Bulk searches
 
     const Author    = req.query.author; // Specific author

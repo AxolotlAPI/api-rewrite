@@ -1,9 +1,14 @@
 import Express from "express";
+import ExpressPublicIp from "express-public-ip";
 
 import dotenv from "dotenv";
 dotenv.config();
 
 const App = Express();
+
+App.enable("trust proxy");
+
+App.use(ExpressPublicIp());
 
 import RoutePictures from "./routes/pictures";
 App.use("/pictures", RoutePictures);
