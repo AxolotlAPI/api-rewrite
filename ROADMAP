@@ -1,5 +1,43 @@
 {
     "features": [
-        
+        {
+            "name": "Fetch axolotl facts",
+            "status": "beta",
+            "assignees": [
+                "AceKiron"
+            ],
+            "priority": "normal"
+        },
+        {
+            "name": "Vote axolotl fact",
+            "status": "indev",
+            "assignees": [
+                "AceKiron"
+            ],
+            "priority": "low"
+        },
+        {
+            "name": "Post axolotl fact",
+            "status": "beta",
+            "assignees": [
+                "AceKiron"
+            ],
+            "priority": "normal"
+        },
+        {
+            "name": "Fetch axolotl pictures",
+            "status": "pending",
+            "priority": "normal"
+        },
+        {
+            "name": "Vote axolotl picture",
+            "status": "pending",
+            "priority": "low"
+        },
+        {
+            "name": "Post axolotl picture",
+            "status": "pending",
+            "priority": "low"
+        }
     ]
 }
