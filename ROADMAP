@@ -10,7 +10,7 @@
         },
         {
             "name": "Vote axolotl fact",
-            "status": "indev",
+            "status": "beta",
             "assignees": [
                 "AceKiron"
             ],
