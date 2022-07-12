@@ -48,7 +48,7 @@ export default function(db): Express.Router {
 
     Router.post("/", RateLimit({
         windowMs: 1000 * 60 * 60 * 24, // Per day
-        max: 100, // Max 1 request per day
+        max: 1, // Max 1 request per day
         standardHeaders: true, // Return rate limit info in the "RateLimit-*" headers
         legacyHeaders: false // Disable the "X-RateLimit-*" headers
     }), (req, res) => {
