@@ -1,18 +1,12 @@
 import Express from "express";
-import RateLimit from "express-rate-limit";
 import SqlString from "sqlstring-sqlite";
 
-export default function(db): Express.Router {
+export default function(db, FetchRatelimit, PostRateLimit, VoteRateLimit): Express.Router {
     const Router = Express.Router();
 
-    const MainRateLimit = RateLimit({
-        windowMs: 1000 * 60 * 60,
-        max: 120,
-        standardHeaders: true,
-        legacyHeaders: false
-    });
+    
 
-    Router.get("/", MainRateLimit, (req, res) => {
+    Router.get("/", FetchRatelimit, (req, res) => {
         const Amount    = req.query.amount || 1; // Bulk searches
         
         if (Amount > 100) return res.status(403).send({
@@ -46,12 +40,7 @@ export default function(db): Express.Router {
         res.send(Facts);
     });
 
-    Router.post("/", RateLimit({
-        windowMs: 1000 * 60 * 60 * 24, // Per day
-        max: 1, // Max 1 request per day
-        standardHeaders: true, // Return rate limit info in the "RateLimit-*" headers
-        legacyHeaders: false // Disable the "X-RateLimit-*" headers
-    }), (req, res) => {
+    Router.post("/", PostRateLimit, (req, res) => {
         const Content = req.query.content;
         const Author = req.query.author;
         if (!Content || !Author) return res.status(400).send({
@@ -72,12 +61,7 @@ export default function(db): Express.Router {
     });
 
     const VoteRouter = Express.Router();
-    VoteRouter.use(RateLimit({
-        windowMs: 1000 * 60 * 60, // Per hour
-        max: 1, // Max 1 request per hour
-        standardHeaders: true, // Return rate limit info in the "RateLimit-*" headers
-        legacyHeaders: false // Disable the "X-RateLimit-*" headers
-    }));
+    VoteRouter.use(VoteRateLimit);
 
     VoteRouter.patch("/up", (req, res) => {
         const ID = Number(req.query.id);
