@@ -7,10 +7,10 @@ const db = new sqlite3("test.db");
 
 const App = Express();
 
-// import RoutePictures from "./routes/pictures";
+import RoutePictures from "./routes/pictures";
 import RouteFacts from "./routes/facts";
 
-// App.use("/pictures", RoutePictures(db));
+App.use("/pictures", RoutePictures(db));
 App.use("/facts", RouteFacts(db));
 
 const PORT = process.env.PORT || 8080;
